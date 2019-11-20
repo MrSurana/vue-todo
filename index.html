@@ -100,6 +100,25 @@
             font-size: 18px;
         }
 
+        a.edit {
+            color: rgb(75, 0, 130);
+            text-decoration: none !important;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 5px;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        a.edit:hover {
+            background-color: rgba(75, 0, 130, 0.1);
+        }
+
+        a.edit:active {
+            background-color: rgba(75, 0, 130, 0.2);
+        }
+
+
         a.delete:hover {
             background-color: rgba(255, 0, 0, 0.1);
         }
@@ -119,7 +138,10 @@
         <div class="list">
             <div v-for="(todo, i) in todos" class="list-item">
                 {{ todo }}
-                <a v-on:click.prevent="removeTodo(i)" class="delete">&times;</a>
+                <div>
+                    <a v-on:click.prevent="editTodo(i)" class="edit">edit</a>
+                    <a v-on:click.prevent="removeTodo(i)" class="delete">&times;</a>
+                </div>
             </div>
         </div>
     </div>
@@ -143,6 +165,10 @@
                 addTodo: function () {
                     this.todos.unshift(this.newTodo);
                     this.newTodo = null;
+                },
+
+                editTodo: function () {
+
                 },
 
                 removeTodo: function (i) {
